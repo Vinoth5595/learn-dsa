@@ -1,6 +1,6 @@
 package learn.ds.array;
 
-public class MaximulSubarray {
+public class MaximumSubarray {
 
 	public static void main(String[] args) {
 		int[] intArray = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
