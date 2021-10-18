@@ -5,6 +5,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * To solve duplicate arrays
+ * 
+ * @author vinoth
+ *
+ */
 public class ContainsDuplicate {
 
 	public static void main(String[] args) {
