@@ -5,7 +5,7 @@ package learn.ds.hashtable;
  * 
  * @author vinoth
  *
- * @param <K>
+ * @param <K> the key
  * @param <V>
  */
 class Node<K, V>{
