@@ -1,5 +1,13 @@
 package learn.ds.hashtable;
 
+/**
+ * Node class
+ * 
+ * @author vinoth
+ *
+ * @param <K>
+ * @param <V>
+ */
 class Node<K, V>{
 	int hash;
 	K key;
