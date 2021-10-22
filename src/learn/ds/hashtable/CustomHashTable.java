@@ -6,7 +6,7 @@ package learn.ds.hashtable;
  * @author vinoth
  *
  * @param <K> the key
- * @param <V>
+ * @param <V>  the value
  */
 class Node<K, V>{
 	int hash;
