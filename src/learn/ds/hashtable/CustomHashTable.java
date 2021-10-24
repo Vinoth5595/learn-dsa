@@ -78,6 +78,22 @@ class HashMap<K, V> {
 
 		return head.value;
 	}
+	
+	public V get(K key) {
+		int bucketIndex = getBucketIndex(key);
+		int hashCode = hashCode(key);
+		
+		HashNode<K, V> head = bucketArray.get(bucketIndex);
+		HashNode<K, V> prev = null;
+		
+		while(head != null) {
+			if(head.hashCode == hashCode && head.key.equals(key)) {
+				return head.value;
+			}
+		}
+		
+		return null;
+	}
 
 }
 
