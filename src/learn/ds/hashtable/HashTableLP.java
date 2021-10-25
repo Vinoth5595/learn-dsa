@@ -17,7 +17,7 @@ public class HashTableLP {
 		System.out.println("Hash Table Implementation using Linear Probing\n\n");
 		System.out.println("Enter size");
 
-		HTLinearProbing htLinearProbing = new HTLinearProbing(10);
+		HTLinearProbing htLinearProbing = new HTLinearProbing(scanner.nextInt());
 
 		char ch;
 
@@ -36,7 +36,11 @@ public class HashTableLP {
 			case 1:
 				// Display message
 				System.out.println("Enter key and value");
-				htLinearProbing.put(scanner.next(), scanner.next());
+				Object k = scanner.next();
+				Object v = scanner.next();
+				System.out.println(k +" : " + v);
+				htLinearProbing.put(k, v);
+				htLinearProbing.printHashTable();
 				// Break statement to terminate a case
 				break;
 
@@ -45,6 +49,7 @@ public class HashTableLP {
 				// Display message
 				System.out.println("Enter key");
 				htLinearProbing.remove(scanner.next());
+				htLinearProbing.printHashTable();
 				// Break statement to terminate a case
 				break;
 
@@ -53,6 +58,7 @@ public class HashTableLP {
 				// Print statements
 				System.out.println("Enter key");
 				System.out.println("Value = " + htLinearProbing.get(scanner.next()));
+				htLinearProbing.printHashTable();
 				// Break statement to terminate a case
 				break;
 
@@ -103,19 +109,35 @@ class HTLinearProbing {
 				return values[index];
 			}
 
-			index = (index + 1) * bucketSize;
+			index = (index + 1) %  bucketSize;
 		}
 
 		return null;
 	}
 
 	public void put(Object key, Object value) {
-		int index = getBucketIndex(key);
+		if ((1.0 * size / bucketSize) >= 0.7) {
+			Object[] tempKey = keys;
+			Object[] tempValue = values;
+
+			bucketSize = 2 * bucketSize;
+
+			keys = new Object[bucketSize];
+			values = new Object[bucketSize];
+
+			for (int i = 0; i < bucketSize / 2; i++) {
+				keys[i] = tempKey[i];
+				values[i] = tempValue[i];
+			}
+		}
+
+		int temp = getBucketIndex(key);
+		int index = temp;
 
 		do {
 			if (keys[index] == null) {
 				keys[index] = key;
-				keys[index] = values;
+				values[index] = value;
 				size++;
 				return;
 			}
@@ -125,8 +147,8 @@ class HTLinearProbing {
 				return;
 			}
 
-			index = (index + 1) * bucketSize;
-		} while (keys[index] != null);
+			index = (index + 1) % bucketSize;
+		} while (index != temp);
 	}
 
 	public void remove(Object key) {
@@ -142,10 +164,10 @@ class HTLinearProbing {
 				values[index] = null;
 			}
 
-			index = (index + 1) * bucketSize;
+			index = (index + 1) % bucketSize;
 		}
 
-		for (index = (index + 1) * bucketSize; keys[index] != null; index = (index + 1) * bucketSize) {
+		for (index = (index + 1) % bucketSize; keys[index] != null; index = (index + 1) % bucketSize) {
 			Object tempKey = keys[index], tempVal = values[index];
 
 			keys[index] = values[index] = null;
@@ -158,8 +180,7 @@ class HTLinearProbing {
 
 	public void printHashTable() {
 		System.out.println("\nHash Table: ");
-		for (int i = 0; i < size; i++)
-			if (keys[i] != null)
+		for (int i = 0; i < bucketSize; i++)
 				System.out.println(keys[i] + " " + values[i]);
 		System.out.println();
 	}
