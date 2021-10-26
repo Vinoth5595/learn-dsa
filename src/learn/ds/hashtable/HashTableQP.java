@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 /**
- * HashTable - Open Addressing - Linear Probing
+ * HashTable - Open Addressing - Quadratic Probing
  * 
  * @author vinoth
  *
