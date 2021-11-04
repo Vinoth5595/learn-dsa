@@ -15,16 +15,16 @@ class HashEntry{
 class HashTableDH{
 	int bucketCapacity;
 	int size;
-	HashNode[] hashNode;
+	HashEntry[] table;
 	int primeNumber;
 	
 	HashTableDH(int initialCapacity){
 		bucketCapacity = initialCapacity;
 		size = 0;
-		hashNode = new HashNode[bucketCapacity];
+		table = new HashEntry[bucketCapacity];
 		
 		for(int i = 0; i < bucketCapacity; i++) {
-			hashNode[i] = null;
+			table[i] = null;
 		}
 		
 		primeNumber = getPrimeNumber();
@@ -69,21 +69,66 @@ class HashTableDH{
 		int hashCode1 = hash1(key);
 		int hashCode2 = hash2(key);
 		
-		while(hashNode[hashCode1] != null) {
-			if(!hashNode[hashCode1].key.equals(key)){
+		while(table[hashCode1] != null) {
+			if(!table[hashCode1].key.equals(key)){
 				hashCode1 += hashCode2;
 				hashCode1 %= bucketCapacity;
 			}
 		}
 		
-		return hashNode[hashCode1].value;
+		return table[hashCode1].value;
+	}
+	
+	public void put(Object key, Object value) {
+		if(size == bucketCapacity) {
+			return;
+		}
+		
+		int hash1 = hash1(key);
+		int hash2 = hash2(key);
+		
+		while(table[hash1] != null){
+			hash1 += hash2;
+			hash1 %= bucketCapacity;
+		}
+		
+		table[hash1] = new HashEntry(key, value);
+		size++;
+	}
+	
+	public void remove(Object key) {
+		int hash1 = hash1(key);
+		int hash2 = hash2(key);
+		
+		while(table[hash1] != null && !table[hash1].key.equals(key)) {
+			hash1 += hash2;
+			hash1 %= bucketCapacity;
+		}
+		
+		table[hash1] = null;
+		size--;
+	}
+	
+	public void printHashTable() {
+		System.out.println("HashTable");
+		
+		for(int i = 0; i < size; i++) {
+			if(table[i] != null)
+				System.out.println("index - " + i + " : Key - " + table[i].key + ", value - " + table[i].value);
+		}
 	}
 }
 
 public class HashTableDHMain {
 
 	public static void main(String[] args) {
+		HashTableDH hashTableDH = new HashTableDH(10);
 		
+		hashTableDH.put(1, "One");
+		hashTableDH.put(2, "Two");
+		hashTableDH.put(3, "Three");
+		
+		hashTableDH.printHashTable();
 	}
 
 }
