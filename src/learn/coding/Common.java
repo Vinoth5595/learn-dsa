@@ -95,6 +95,12 @@ class Code {
 				System.out.print(i + " ");
 			}
 		}
+		System.out.println();
+	}
+
+	public void checkOddNumbers2(List<Integer> num) {
+		boolean isOdd = num.parallelStream().anyMatch(n -> n % 2 != 0);
+		System.out.println(isOdd ? "Odd" : "Even");
 	}
 
 }
@@ -110,5 +116,6 @@ public class Common {
 		code.fibonacciSeriesBruteForce(10);
 		code.fibonacciSeries(5);
 		code.checkOddNumbers(Arrays.asList(1, 2, 3, 4, 5, 6));
+		code.checkOddNumbers2(Arrays.asList(2, 4));
 	}
 }
