@@ -141,6 +141,15 @@ class Code {
 		
 		System.out.println(Arrays.toString(intArr));
 	}
+	
+	private int factorial(int num) {
+		if(num == 1) return 1;
+		return num * factorial(num - 1);
+	}
+	
+	public void factorialNumber(int n) {
+		System.out.println(factorial(n));
+	}
 }
 
 public class Common {
@@ -158,5 +167,6 @@ public class Common {
 		code.checkPalindromeString("Malayalam");
 		code.removeWhiteSpaces("Hello World");
 		code.sortArray(new int[] {4, 6, 1, 2});
+		code.factorialNumber(5);
 	}
 }
