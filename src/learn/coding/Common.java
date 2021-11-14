@@ -28,7 +28,12 @@ class Code {
 		a = b - a; // 3 - 1 = 2
 		b = b - a; // 3 - 2 = 1
 
-		System.out.printf("After swapping: a is %s, b is %s", a, b);
+		System.out.printf("After swapping: a is %s, b is %s \n", a, b);
+	}
+
+	public void checkVowel(String input) {
+		boolean isVowel = input.toLowerCase().matches(".*[aeiou].*");
+		System.out.println("isVowel:" + isVowel);
 	}
 }
 
@@ -38,5 +43,6 @@ public class Common {
 		Code code = new Code();
 		code.reverseAString("Malayalam"); // To reverse a String
 		code.swapTwoNumbers(1, 2);
+		code.checkVowel("aeoiou");
 	}
 }
