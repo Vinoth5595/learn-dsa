@@ -72,6 +72,19 @@ class Code {
 		System.out.println();
 	}
 	
+	public int fibonacci(int num) {
+		if(num <= 1) {
+			return num;
+		}
+		
+		int sum = fibonacci(num - 1 ) + fibonacci(num -2);
+		return sum;
+	}
+	
+	public void fibonacciSeries(int input) {
+		System.out.println(fibonacci(input));
+	}
+	
 }
 
 public class Common {
@@ -83,5 +96,6 @@ public class Common {
 		code.checkVowel("aeoiou");
 		code.checkPrimeNumber(97);
 		code.fibonacciSeriesBruteForce(10);
+		code.fibonacciSeries(5);
 	}
 }
