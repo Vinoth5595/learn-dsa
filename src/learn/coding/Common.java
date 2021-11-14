@@ -135,7 +135,12 @@ class Code {
 		
 		System.out.println(stringBuilder);
 	}
-
+	
+	public void sortArray(int[] intArr) {
+		Arrays.sort(intArr);
+		
+		System.out.println(Arrays.toString(intArr));
+	}
 }
 
 public class Common {
@@ -152,5 +157,6 @@ public class Common {
 		code.checkOddNumbers2(Arrays.asList(2, 4));
 		code.checkPalindromeString("Malayalam");
 		code.removeWhiteSpaces("Hello World");
+		code.sortArray(new int[] {4, 6, 1, 2});
 	}
 }
