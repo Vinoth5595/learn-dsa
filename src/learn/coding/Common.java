@@ -103,6 +103,22 @@ class Code {
 		System.out.println(isOdd ? "Odd" : "Even");
 	}
 
+	public void checkPalindromeString(String userInput) {
+		if (userInput == null || userInput.strip().equals("")) {
+			throw new IllegalArgumentException("Invalid input");
+		}
+
+		userInput = userInput.toLowerCase();
+		char[] charArr = userInput.toCharArray();
+		StringBuilder stringBuilder = new StringBuilder();
+
+		for (int i = charArr.length - 1; i >= 0; i--) {
+			stringBuilder.append(charArr[i]);
+		}
+
+		System.out.println(stringBuilder.toString().equals(userInput) ? "Palindrome" : "Not Palindrome");
+	}
+
 }
 
 public class Common {
@@ -117,5 +133,6 @@ public class Common {
 		code.fibonacciSeries(5);
 		code.checkOddNumbers(Arrays.asList(1, 2, 3, 4, 5, 6));
 		code.checkOddNumbers2(Arrays.asList(2, 4));
+		code.checkPalindromeString("Malayalam");
 	}
 }
