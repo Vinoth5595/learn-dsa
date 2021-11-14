@@ -35,6 +35,29 @@ class Code {
 		boolean isVowel = input.toLowerCase().matches(".*[aeiou].*");
 		System.out.println("isVowel:" + isVowel);
 	}
+	
+	public void checkPrimeNumber(int input) {
+		boolean isPrime = true;
+		if(input == 0 || input == 1) {
+			System.out.println("Not Prime");
+			return;
+		}
+		
+		if(input == 2) {
+			System.out.println("Prime");
+			return;
+		}
+		
+		for(int i = 2; i <= input/2; i++) {
+			if(input % i == 0) {
+				System.out.println("Not Prime");
+				isPrime = false;
+				break;
+			}
+		}
+		
+		if(isPrime) System.out.println("Prime"); 
+	}
 }
 
 public class Common {
@@ -44,5 +67,6 @@ public class Common {
 		code.reverseAString("Malayalam"); // To reverse a String
 		code.swapTwoNumbers(1, 2);
 		code.checkVowel("aeoiou");
+		code.checkPrimeNumber(97);
 	}
 }
