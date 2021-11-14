@@ -1,5 +1,8 @@
 package learn.coding;
 
+import java.util.Arrays;
+import java.util.List;
+
 class Code {
 
 	/**
@@ -35,56 +38,65 @@ class Code {
 		boolean isVowel = input.toLowerCase().matches(".*[aeiou].*");
 		System.out.println("isVowel:" + isVowel);
 	}
-	
+
 	public void checkPrimeNumber(int input) {
 		boolean isPrime = true;
-		if(input == 0 || input == 1) {
+		if (input == 0 || input == 1) {
 			System.out.println("Not Prime");
 			return;
 		}
-		
-		if(input == 2) {
+
+		if (input == 2) {
 			System.out.println("Prime");
 			return;
 		}
-		
-		for(int i = 2; i <= input/2; i++) {
-			if(input % i == 0) {
+
+		for (int i = 2; i <= input / 2; i++) {
+			if (input % i == 0) {
 				System.out.println("Not Prime");
 				isPrime = false;
 				break;
 			}
 		}
-		
-		if(isPrime) System.out.println("Prime"); 
+
+		if (isPrime)
+			System.out.println("Prime");
 	}
-	
+
 	public void fibonacciSeriesBruteForce(int n) {
 		int a = 0, b = 1, c = 1;
-		
-		for(int i = 1; i <= n; i++) {
+
+		for (int i = 1; i <= n; i++) {
 			System.out.print(a + ", ");
 			a = b; // 1 - 1 - 2
 			b = c; // 1 - 2 - 3
 			c = a + b;// 2 - 3 - 5
 		}
-		
+
 		System.out.println();
 	}
-	
+
 	public int fibonacci(int num) {
-		if(num <= 1) {
+		if (num <= 1) {
 			return num;
 		}
-		
-		int sum = fibonacci(num - 1 ) + fibonacci(num -2);
+
+		int sum = fibonacci(num - 1) + fibonacci(num - 2);
 		return sum;
 	}
-	
+
 	public void fibonacciSeries(int input) {
 		System.out.println(fibonacci(input));
 	}
-	
+
+	public void checkOddNumbers(List<Integer> list) {
+		for (int i : list) {
+			if (i % 2 != 0) {
+				System.out.print(i + " ");
+			}
+		}
+	}
+
 }
 
 public class Common {
@@ -97,5 +109,6 @@ public class Common {
 		code.checkPrimeNumber(97);
 		code.fibonacciSeriesBruteForce(10);
 		code.fibonacciSeries(5);
+		code.checkOddNumbers(Arrays.asList(1, 2, 3, 4, 5, 6));
 	}
 }
