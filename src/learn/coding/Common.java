@@ -58,6 +58,20 @@ class Code {
 		
 		if(isPrime) System.out.println("Prime"); 
 	}
+	
+	public void fibonacciSeriesBruteForce(int n) {
+		int a = 0, b = 1, c = 1;
+		
+		for(int i = 1; i <= n; i++) {
+			System.out.print(a + ", ");
+			a = b; // 1 - 1 - 2
+			b = c; // 1 - 2 - 3
+			c = a + b;// 2 - 3 - 5
+		}
+		
+		System.out.println();
+	}
+	
 }
 
 public class Common {
@@ -68,5 +82,6 @@ public class Common {
 		code.swapTwoNumbers(1, 2);
 		code.checkVowel("aeoiou");
 		code.checkPrimeNumber(97);
+		code.fibonacciSeriesBruteForce(10);
 	}
 }
