@@ -150,6 +150,24 @@ class Code {
 	public void factorialNumber(int n) {
 		System.out.println(factorial(n));
 	}
+	
+	public void pyramidPattern(int n) {
+		for(int i = 1; i <= n; i++) {
+			int whiteSpaces = n - i;
+			
+			printString(" ", whiteSpaces);
+			
+			printString( i + " ", i);
+			
+			System.out.println();
+		}
+	}
+
+	private void printString(String string, int n) {
+		for(int i = 0; i < n; i++) {
+			System.out.print(string);
+		}
+	}
 }
 
 public class Common {
@@ -168,5 +186,6 @@ public class Common {
 		code.removeWhiteSpaces("Hello World");
 		code.sortArray(new int[] {4, 6, 1, 2});
 		code.factorialNumber(5);
+		code.pyramidPattern(5);
 	}
 }
