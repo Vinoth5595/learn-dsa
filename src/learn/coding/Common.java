@@ -118,6 +118,23 @@ class Code {
 
 		System.out.println(stringBuilder.toString().equals(userInput) ? "Palindrome" : "Not Palindrome");
 	}
+	
+	public void removeWhiteSpaces(String userInput) {
+		if(userInput == null || userInput.strip().equals("")) {
+			throw new IllegalArgumentException("invalid input");
+		}
+		
+		StringBuilder stringBuilder = new StringBuilder();
+		char[] charArr = userInput.toCharArray();
+		
+		for(char c: charArr) {
+			if(!Character.isWhitespace(c)) {
+				stringBuilder.append(c);
+			}
+		}
+		
+		System.out.println(stringBuilder);
+	}
 
 }
 
@@ -134,5 +151,6 @@ public class Common {
 		code.checkOddNumbers(Arrays.asList(1, 2, 3, 4, 5, 6));
 		code.checkOddNumbers2(Arrays.asList(2, 4));
 		code.checkPalindromeString("Malayalam");
+		code.removeWhiteSpaces("Hello World");
 	}
 }
