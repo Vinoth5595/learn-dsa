@@ -1,6 +1,7 @@
 package learn.coding;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 class Code {
@@ -170,22 +171,72 @@ class Code {
 	}
 }
 
+class Player implements Comparable<Player> {
+	private String name;
+	private Integer age;
+	private Integer rank;
+	
+	public Player(String name, Integer age, Integer rank) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.rank = rank;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Integer getAge() {
+		return age;
+	}
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+	public Integer getRank() {
+		return rank;
+	}
+	public void setRank(Integer rank) {
+		this.rank = rank;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Player [name=" + name + ", age=" + age + ", rank=" + rank + "]";
+	}
+	@Override
+	public int compareTo(Player o) {
+		return Integer.compare(this.getRank(), o.getRank());
+	}
+}
+
 public class Common {
 
 	public static void main(String[] args) {
 		Code code = new Code();
-		code.reverseAString("Malayalam"); // To reverse a String
-		code.swapTwoNumbers(1, 2);
-		code.checkVowel("aeoiou");
-		code.checkPrimeNumber(97);
-		code.fibonacciSeriesBruteForce(10);
-		code.fibonacciSeries(5);
-		code.checkOddNumbers(Arrays.asList(1, 2, 3, 4, 5, 6));
-		code.checkOddNumbers2(Arrays.asList(2, 4));
-		code.checkPalindromeString("Malayalam");
-		code.removeWhiteSpaces("Hello World");
-		code.sortArray(new int[] {4, 6, 1, 2});
-		code.factorialNumber(5);
-		code.pyramidPattern(5);
+//		code.reverseAString("Malayalam"); // To reverse a String
+//		code.swapTwoNumbers(1, 2);
+//		code.checkVowel("aeoiou");
+//		code.checkPrimeNumber(97);
+//		code.fibonacciSeriesBruteForce(10);
+//		code.fibonacciSeries(5);
+//		code.checkOddNumbers(Arrays.asList(1, 2, 3, 4, 5, 6));
+//		code.checkOddNumbers2(Arrays.asList(2, 4));
+//		code.checkPalindromeString("Malayalam");
+//		code.removeWhiteSpaces("Hello World");
+//		code.sortArray(new int[] {4, 6, 1, 2});
+//		code.factorialNumber(5);
+//		code.pyramidPattern(5);
+		
+		Player player1 = new Player("Vinoth", 26, 1);
+		Player player2 = new Player("Nirmal", 10, 3);
+		Player player3 = new Player("Jaya", 30, 2);
+		
+		List<Player> playerList = Arrays.asList(player1, player2, player3);
+		System.out.println(playerList);
+		Collections.sort(playerList);
+		System.out.println(playerList);
 	}
 }
