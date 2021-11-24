@@ -2,6 +2,7 @@ package learn.coding;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 class Code {
@@ -212,6 +213,24 @@ class Player implements Comparable<Player> {
 	}
 }
 
+class AgeComparator implements Comparator<Player>{
+
+	@Override
+	public int compare(Player o1, Player o2) {
+		return Integer.compare(o1.getAge(), o2.getAge());
+	}
+	
+}
+
+class NameComparator implements Comparator<Player>{
+
+	@Override
+	public int compare(Player o1, Player o2) {
+		return o1.getName().compareTo(o2.getName());
+	}
+	
+}
+
 public class Common {
 
 	public static void main(String[] args) {
@@ -237,6 +256,10 @@ public class Common {
 		List<Player> playerList = Arrays.asList(player1, player2, player3);
 		System.out.println(playerList);
 		Collections.sort(playerList);
-		System.out.println(playerList);
+		System.out.println("Based on Rank:" + playerList);
+		Collections.sort(playerList, new AgeComparator());
+		System.out.println("Based on Age:" + playerList);
+		Collections.sort(playerList, new NameComparator());
+		System.out.println("Based on Name:" + playerList);
 	}
 }
