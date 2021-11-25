@@ -13,27 +13,36 @@ public class ConsecutiveNumbers {
 
 	private static int findMaximumConsecutiveNumber2(int[] arr) {
 		Set<Integer> set = new HashSet<>();
-		
-		for(int value: arr) {
+		Set<Integer> finalSet = new HashSet<>();
+
+		for (int value : arr) {
 			set.add(value);
 		}
-		
+
 		int longestStreak = 0;
-		
-		for(int num: set) {
-			if(!set.contains(num-1)) {
+
+		for (int num : set) {
+			if (!set.contains(num - 1)) {
 				int currentNum = num;
 				int currentStreak = 1;
-				
-				while(set.contains(currentNum + 1)) {
+				Set<Integer> currentSet = new HashSet<>();
+				currentSet.add(currentNum);
+
+				while (set.contains(currentNum + 1)) {
 					currentNum += 1;
 					currentStreak += 1;
+					currentSet.add(currentNum);
 				}
-				
+
 				longestStreak = Math.max(currentStreak, longestStreak);
+				if(currentSet.size() > finalSet.size()) {
+					finalSet = currentSet;
+				}
 			}
 		}
 		
+		System.out.println(finalSet);
+
 		return longestStreak;
 	}
 
