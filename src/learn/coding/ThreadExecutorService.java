@@ -1,5 +1,6 @@
 package learn.coding;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -27,11 +28,11 @@ class MyThread extends Thread {
 
 class CallableTask implements Callable<String> {
 	private String name;
-	
+
 	CallableTask(String name) {
 		this.name = name;
 	}
-	
+
 	@Override
 	public String call() throws Exception {
 		Thread.sleep(1000);
@@ -42,13 +43,13 @@ class CallableTask implements Callable<String> {
 public class ThreadExecutorService {
 
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
-		ExecutorService executorService = Executors.newFixedThreadPool(2);
-		Future<String> submitA = executorService.submit(new CallableTask("A"));
-		System.out.println(submitA.get());
-		Future<String> submitB = executorService.submit(new CallableTask("B"));
-		System.out.println(submitB.get());
-		Future<String> submitC = executorService.submit(new CallableTask("C"));
-		System.out.println(submitC.get());
+		ExecutorService executorService = Executors.newFixedThreadPool(3);
+		List<Future<String>> invokeAll = executorService.invokeAll(List.of(new CallableTask("A"), new CallableTask("B"), new CallableTask("C")));
+		
+		for(Future<String> val: invokeAll) {
+			System.out.println(val.get());
+		}
+		
 
 		executorService.shutdown();
 	}
