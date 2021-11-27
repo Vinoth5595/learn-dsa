@@ -1,7 +1,10 @@
 package learn.coding;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 class MyThread extends Thread {
 
@@ -22,16 +25,30 @@ class MyThread extends Thread {
 	}
 }
 
+class CallableTask implements Callable<String> {
+	private String name;
+	
+	CallableTask(String name) {
+		this.name = name;
+	}
+	
+	@Override
+	public String call() throws Exception {
+		Thread.sleep(1000);
+		return this.name;
+	}
+}
+
 public class ThreadExecutorService {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		ExecutorService executorService = Executors.newFixedThreadPool(2);
-		executorService.execute(new MyThread(1));
-		executorService.execute(new MyThread(2));
-		executorService.execute(new MyThread(3));
-		executorService.execute(new MyThread(4));
-		executorService.execute(new MyThread(5));
-		executorService.execute(new MyThread(6));
+		Future<String> submitA = executorService.submit(new CallableTask("A"));
+		System.out.println(submitA.get());
+		Future<String> submitB = executorService.submit(new CallableTask("B"));
+		System.out.println(submitB.get());
+		Future<String> submitC = executorService.submit(new CallableTask("C"));
+		System.out.println(submitC.get());
 
 		executorService.shutdown();
 	}
