@@ -44,12 +44,9 @@ public class ThreadExecutorService {
 
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		ExecutorService executorService = Executors.newFixedThreadPool(3);
-		List<Future<String>> invokeAll = executorService.invokeAll(List.of(new CallableTask("A"), new CallableTask("B"), new CallableTask("C")));
-		
-		for(Future<String> val: invokeAll) {
-			System.out.println(val.get());
-		}
-		
+		String invokeAny = executorService
+				.invokeAny(List.of(new CallableTask("A"), new CallableTask("B"), new CallableTask("C")));
+		System.out.println(invokeAny);
 
 		executorService.shutdown();
 	}
