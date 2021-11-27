@@ -3,7 +3,68 @@ package learn.coding;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
+
+class Player implements Comparable<Player> {
+	private String name;
+	private Integer age;
+	private Integer rank;
+	
+	public Player(String name, Integer age, Integer rank) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.rank = rank;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Integer getAge() {
+		return age;
+	}
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+	public Integer getRank() {
+		return rank;
+	}
+	public void setRank(Integer rank) {
+		this.rank = rank;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Player [name=" + name + ", age=" + age + ", rank=" + rank + "]";
+	}
+	@Override
+	public int compareTo(Player o) {
+		return Integer.compare(this.getRank(), o.getRank());
+	}
+}
+
+class AgeComparator implements Comparator<Player>{
+
+	@Override
+	public int compare(Player o1, Player o2) {
+		return Integer.compare(o1.getAge(), o2.getAge());
+	}
+	
+}
+
+class NameComparator implements Comparator<Player>{
+
+	@Override
+	public int compare(Player o1, Player o2) {
+		return o1.getName().compareTo(o2.getName());
+	}
+	
+}
+
 
 class Code {
 
@@ -172,64 +233,6 @@ class Code {
 	}
 }
 
-class Player implements Comparable<Player> {
-	private String name;
-	private Integer age;
-	private Integer rank;
-	
-	public Player(String name, Integer age, Integer rank) {
-		super();
-		this.name = name;
-		this.age = age;
-		this.rank = rank;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public Integer getAge() {
-		return age;
-	}
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-	public Integer getRank() {
-		return rank;
-	}
-	public void setRank(Integer rank) {
-		this.rank = rank;
-	}
-	
-	
-	@Override
-	public String toString() {
-		return "Player [name=" + name + ", age=" + age + ", rank=" + rank + "]";
-	}
-	@Override
-	public int compareTo(Player o) {
-		return Integer.compare(this.getRank(), o.getRank());
-	}
-}
-
-class AgeComparator implements Comparator<Player>{
-
-	@Override
-	public int compare(Player o1, Player o2) {
-		return Integer.compare(o1.getAge(), o2.getAge());
-	}
-	
-}
-
-class NameComparator implements Comparator<Player>{
-
-	@Override
-	public int compare(Player o1, Player o2) {
-		return o1.getName().compareTo(o2.getName());
-	}
-	
-}
 
 public class Common {
 
@@ -249,17 +252,29 @@ public class Common {
 //		code.factorialNumber(5);
 //		code.pyramidPattern(5);
 		
-		Player player1 = new Player("Vinoth", 26, 1);
-		Player player2 = new Player("Nirmal", 10, 3);
-		Player player3 = new Player("Jaya", 30, 2);
+//		Player player1 = new Player("Vinoth", 26, 1);
+//		Player player2 = new Player("Nirmal", 10, 3);
+//		Player player3 = new Player("Jaya", 30, 2);
+//		
+//		List<Player> playerList = Arrays.asList(player1, player2, player3);
+//		System.out.println(playerList);
+//		Collections.sort(playerList);
+//		System.out.println("Based on Rank:" + playerList);
+//		Collections.sort(playerList, new AgeComparator());
+//		System.out.println("Based on Age:" + playerList);
+//		Collections.sort(playerList, new NameComparator());
+//		System.out.println("Based on Name:" + playerList);
 		
-		List<Player> playerList = Arrays.asList(player1, player2, player3);
-		System.out.println(playerList);
-		Collections.sort(playerList);
-		System.out.println("Based on Rank:" + playerList);
-		Collections.sort(playerList, new AgeComparator());
-		System.out.println("Based on Age:" + playerList);
-		Collections.sort(playerList, new NameComparator());
-		System.out.println("Based on Name:" + playerList);
+		LinkedList<Integer> linkedList = new LinkedList<>();
+		linkedList.add(1);
+		linkedList.add(2);
+		linkedList.add(3);
+		reverseLinkedList(linkedList);
+	}
+
+	private static void reverseLinkedList(LinkedList<Integer> linkedList) {
+		LinkedList<Integer> reversedList = new LinkedList<>();
+		linkedList.descendingIterator().forEachRemaining(reversedList::add);
+		System.out.println(reversedList);
 	}
 }
