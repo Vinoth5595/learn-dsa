@@ -43,12 +43,32 @@ class LazySingleton {
 	}
 }
 
+// Double checked singleton
+class DoubleCheckedSingleton {
+	private static volatile DoubleCheckedSingleton dcs;
+	
+	private DoubleCheckedSingleton() {}
+	
+	public static DoubleCheckedSingleton getInstance() {
+		if(dcs == null) {
+			synchronized(DoubleCheckedSingleton.class) {
+				if(dcs == null) {
+					dcs = new DoubleCheckedSingleton();
+				}
+			}
+		}
+		
+		return dcs;
+	}
+}
+
 public class Singleton {
 
 	public static void main(String[] args) {
 		System.out.println(SimpleSingleton.getInstance().hashCode() + " " + SimpleSingleton.getInstance().hashCode());
 		System.out.println(StaticBlockSingleton.getInstance().hashCode() + " " + StaticBlockSingleton.getInstance().hashCode());
 		System.out.println(LazySingleton.getInstance().hashCode() + " " + LazySingleton.getInstance().hashCode());
+		System.out.println(DoubleCheckedSingleton.getInstance().hashCode() + " " + DoubleCheckedSingleton.getInstance().hashCode());
 	}
 
 }
