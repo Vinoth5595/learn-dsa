@@ -28,11 +28,27 @@ class StaticBlockSingleton {
 	}
 }
 
+// Lazy Initialization singleton
+class LazySingleton {
+	private static LazySingleton lazySingleton;
+	
+	private LazySingleton() {}
+	
+	public static synchronized LazySingleton getInstance() {
+		if(lazySingleton == null) {
+			lazySingleton = new LazySingleton();
+		}
+		
+		return lazySingleton;
+	}
+}
+
 public class Singleton {
 
 	public static void main(String[] args) {
 		System.out.println(SimpleSingleton.getInstance().hashCode() + " " + SimpleSingleton.getInstance().hashCode());
 		System.out.println(StaticBlockSingleton.getInstance().hashCode() + " " + StaticBlockSingleton.getInstance().hashCode());
+		System.out.println(LazySingleton.getInstance().hashCode() + " " + LazySingleton.getInstance().hashCode());
 	}
 
 }
