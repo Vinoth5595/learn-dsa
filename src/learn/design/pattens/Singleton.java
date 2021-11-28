@@ -13,10 +13,26 @@ class SimpleSingleton {
 	}
 }
 
+// Eagerly Initialized static block singleton
+class StaticBlockSingleton {
+	private static final StaticBlockSingleton sbc;
+	
+	private StaticBlockSingleton() {}
+	
+	static {
+		sbc = new StaticBlockSingleton();
+	}
+	
+	public static StaticBlockSingleton getInstance() {
+		return sbc;
+	}
+}
+
 public class Singleton {
 
 	public static void main(String[] args) {
 		System.out.println(SimpleSingleton.getInstance().hashCode() + " " + SimpleSingleton.getInstance().hashCode());
+		System.out.println(StaticBlockSingleton.getInstance().hashCode() + " " + StaticBlockSingleton.getInstance().hashCode());
 	}
 
 }
