@@ -62,6 +62,19 @@ class DoubleCheckedSingleton {
 	}
 }
 
+// Lazy inner class singleton (Bill Pugh Singleton)
+class BillPughSingleton {
+	private BillPughSingleton() {}
+	
+	private static class InstanceHolder {
+		private static final BillPughSingleton INSTANCE = new BillPughSingleton();
+	}
+	
+	public static BillPughSingleton getInstance() {
+		return InstanceHolder.INSTANCE;
+	}
+}
+
 public class Singleton {
 
 	public static void main(String[] args) {
@@ -69,6 +82,7 @@ public class Singleton {
 		System.out.println(StaticBlockSingleton.getInstance().hashCode() + " " + StaticBlockSingleton.getInstance().hashCode());
 		System.out.println(LazySingleton.getInstance().hashCode() + " " + LazySingleton.getInstance().hashCode());
 		System.out.println(DoubleCheckedSingleton.getInstance().hashCode() + " " + DoubleCheckedSingleton.getInstance().hashCode());
+		System.out.println(BillPughSingleton.getInstance().hashCode() + " " + BillPughSingleton.getInstance().hashCode());
 	}
 
 }
