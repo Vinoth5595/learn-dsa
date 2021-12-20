@@ -40,6 +40,15 @@ class LList {
 		
 		return linkedList;
 	}
+	
+	public static void printList(LList linkedList) {
+		Node currNode = linkedList.head;
+		
+		while(currNode.next != null) {
+			System.out.print(currNode.data + " ");
+			currNode = currNode.next;
+		}
+	}
 }
 
 public class CustomLinkedList {
