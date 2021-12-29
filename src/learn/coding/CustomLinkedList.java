@@ -35,7 +35,7 @@ class LList {
 				lastNode = lastNode.next;
 			}
 
-			//lastNode = newNode;
+			lastNode = newNode;
 		}
 		
 		return linkedList;
