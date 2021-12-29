@@ -295,6 +295,23 @@ public class Common {
 //		unsortMap.put("f", 9);
 //
 //		sortMapbyKeyjava8(unsortMap);
+
+		String[] strArr = {"vinoth", "vin", "vinot", "vino"};
+		System.out.println(findLongestCommonPrefix(strArr));
+	}
+
+	private static String findLongestCommonPrefix(String[] strArr) {
+		if(strArr.length == 0) return "";
+
+		String prefix = strArr[0];
+
+		for(int i = 0; i < strArr.length; i++){
+			while(strArr[i].indexOf(prefix) != 0){
+				prefix = prefix.substring(0, prefix.length() - 1);
+				if(prefix.isEmpty()) return "";
+			}
+		}
+		return prefix;
 	}
 
 	private static void sortMapbyKeyjava8(Map<String, Integer> unsortMap) {
