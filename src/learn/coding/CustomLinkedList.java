@@ -34,8 +34,8 @@ class LList {
 			while(lastNode.next != null) {
 				lastNode = lastNode.next;
 			}
-			
-			lastNode = newNode;
+
+			//lastNode = newNode;
 		}
 		
 		return linkedList;
@@ -47,11 +47,15 @@ class LList {
 		while(currNode.next != null) {
 			System.out.print(currNode.data + " ");
 			currNode = currNode.next;
+
+
 		}
 	}
 }
 
 public class CustomLinkedList {
+
+
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
