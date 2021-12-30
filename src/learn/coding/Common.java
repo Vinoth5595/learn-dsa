@@ -298,6 +298,25 @@ public class Common {
 
 		String[] strArr = {"vinoth", "vin", "vinot", "vino"};
 		System.out.println(findLongestCommonPrefix(strArr));
+
+		int[] intArr = {1, 2, 4, 5, 6, 6, 8, 9, 10};
+		int target = 11;
+		System.out.println(findClosestValue(intArr, target));
+	}
+
+	private static int findClosestValue(int[] intArr, int target) {
+		int closest = Math.abs(target - intArr[0]);
+		int index = 0;
+
+		for(int i = 1; i < intArr.length; i++){
+			int tempClosest = Math.abs(target - intArr[i]);
+			if(tempClosest < closest){
+				closest = tempClosest;
+				index = i;
+			}
+		}
+
+		return intArr[index];
 	}
 
 	private static String findLongestCommonPrefix(String[] strArr) {
