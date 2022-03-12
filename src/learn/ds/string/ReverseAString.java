@@ -10,6 +10,7 @@ public class ReverseAString {
 
 	public static void main(String[] args) {
 		String myName = "Vinoth";
+
 		String reversedString = "";
 		char[] nameCharArr = myName.toCharArray();
 
