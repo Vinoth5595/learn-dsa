@@ -18,6 +18,8 @@ public class ReverseAString {
 			reversedString += nameCharArr[i];
 		}
 
+		// Testing commit
+
 		System.out.println(reversedString);
 	}
 
