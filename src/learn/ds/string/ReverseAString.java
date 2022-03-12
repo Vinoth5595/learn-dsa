@@ -9,7 +9,7 @@ package learn.ds.string;
 public class ReverseAString {
 
 	public static void main(String[] args) {
-		String myName = "Vinoth";
+		String myName = "Vinoth new branch";
 
 		String reversedString = "";
 		char[] nameCharArr = myName.toCharArray();
