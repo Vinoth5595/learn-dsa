@@ -11,7 +11,7 @@ public class ReverseAString {
 	public static void main(String[] args) {
 		String myName = "Vinoth";
 
-		String reversedString = "";
+		String reversedString = "" ;
 		char[] nameCharArr = myName.toCharArray();
 
 		for (int i = nameCharArr.length - 1; i >= 0; i--) {
