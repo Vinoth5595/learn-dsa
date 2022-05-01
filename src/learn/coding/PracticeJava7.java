@@ -1,5 +1,7 @@
 package learn.coding;
 
+import java.sql.SQLException;
+
 public class PracticeJava7 {
 
     public static void main(String[] args) {
@@ -33,5 +35,16 @@ public class PracticeJava7 {
         // Take note that "%b" prints true or false (for null), NOT binary.
         System.out.printf("%d(%x)(%o)(%b)\n", anInt1, anInt1, anInt1, anInt1);
         System.out.printf("%d(%x)(%o)(%b)\n", aByte, aByte, aByte, aByte);
+
+        try {
+            System.out.println("Exception Handling");
+            exception1();
+        } catch(ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void exception1() throws ClassNotFoundException, SQLException{
+        throw new ClassNotFoundException("I am throwing fake exception");
     }
 }
