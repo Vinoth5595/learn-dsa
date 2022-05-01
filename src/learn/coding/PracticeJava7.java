@@ -38,31 +38,40 @@ public class PracticeJava7 {
         // Take note that "%b" prints true or false (for null), NOT binary.
         System.out.printf("%d(%x)(%o)(%b)\n", anInt1, anInt1, anInt1, anInt1);
         System.out.printf("%d(%x)(%o)(%b)\n", aByte, aByte, aByte, aByte);
-
-        try {
-            System.out.println("Exception Handling");
-            exception1();
-        } catch(ClassNotFoundException | SQLException ex) {
-            ex.printStackTrace();
-        }
-
-        // it will throw IOException if in.txt is not available.
-        try (BufferedReader src  = new BufferedReader(new FileReader("in.txt"));
-             BufferedWriter dest = new BufferedWriter(new FileWriter("out.txt"))) {
-            String line;
-            while ((line = src.readLine()) != null) {
-                System.out.println(line);
-                dest.write(line);
-                dest.newLine();
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+//
+//        try {
+//            System.out.println("Exception Handling");
+//            exception1();
+//        } catch(ClassNotFoundException | SQLException ex) {
+//            ex.printStackTrace();
+//        }
+//
+//        // it will throw IOException if in.txt is not available.
+//        try (BufferedReader src  = new BufferedReader(new FileReader("in.txt"));
+//             BufferedWriter dest = new BufferedWriter(new FileWriter("out.txt"))) {
+//            String line;
+//            while ((line = src.readLine()) != null) {
+//                System.out.println(line);
+//                dest.write(line);
+//                dest.newLine();
+//            }
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
 
         List<String> lst2 = new ArrayList<>();
+
+        print("test","this", "buddy");
     }
 
     public static void exception1() throws ClassNotFoundException, SQLException{
         throw new ClassNotFoundException("I am throwing fake exception");
+    }
+
+    @SafeVarargs
+    public static <T> void print(T... a){
+        for(T t : a){
+            System.out.println(t);
+        }
     }
 }
