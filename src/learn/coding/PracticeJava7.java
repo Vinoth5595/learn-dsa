@@ -2,6 +2,8 @@ package learn.coding;
 
 import java.io.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PracticeJava7 {
 
@@ -56,6 +58,8 @@ public class PracticeJava7 {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
+        List<String> lst2 = new ArrayList<>();
     }
 
     public static void exception1() throws ClassNotFoundException, SQLException{
