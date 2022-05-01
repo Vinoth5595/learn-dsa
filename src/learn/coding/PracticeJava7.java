@@ -1,5 +1,6 @@
 package learn.coding;
 
+import java.io.*;
 import java.sql.SQLException;
 
 public class PracticeJava7 {
@@ -40,6 +41,19 @@ public class PracticeJava7 {
             System.out.println("Exception Handling");
             exception1();
         } catch(ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        // it will throw IOException if in.txt is not available.
+        try (BufferedReader src  = new BufferedReader(new FileReader("in.txt"));
+             BufferedWriter dest = new BufferedWriter(new FileWriter("out.txt"))) {
+            String line;
+            while ((line = src.readLine()) != null) {
+                System.out.println(line);
+                dest.write(line);
+                dest.newLine();
+            }
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
