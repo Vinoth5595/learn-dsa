@@ -20,12 +20,12 @@ interface SampleInterface {
 interface OperatingSystem {
     Logger LOG = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-    default void iAmDefault(){
-        LOG.log(Level.INFO, "Calling default method");
+    static void iAmStatic() {
+        LOG.log(Level.INFO, "Calling Static Method");
     }
 
-    static void iAmStatic(){
-        LOG.log(Level.INFO, "Calling Static Method");
+    default void iAmDefault() {
+        LOG.log(Level.INFO, "Calling default method");
     }
 }
 
@@ -36,29 +36,22 @@ public class PracticeJava8 implements OperatingSystem {
     /**
      * forEach() method in Iterable interface
      */
-    public static void forEachIterable(){
-        List<Integer> integerList = Arrays.asList(1,2,3,4,5);
+    public static void forEachIterable() {
+        List<Integer> integerList = Arrays.asList(1, 2, 3, 4, 5);
         integerList.forEach(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
     }
 
     /**
      * Static method implementation in interface
      */
-    public static void staticInterface(){
+    public static void staticInterface() {
         OperatingSystem.iAmStatic();
-    }
-
-    /**
-     * Default method implementation in interface
-     */
-    public void defaultInterface(){
-        iAmDefault();
     }
 
     /**
      * Functional Interface
      */
-    public static void functionalInterface(){
+    public static void functionalInterface() {
         SampleInterface sampleInterface = i -> LOGGER.log(Level.INFO, () -> i);
         sampleInterface.hello("Called by lambda expression");
     }
@@ -66,21 +59,21 @@ public class PracticeJava8 implements OperatingSystem {
     /**
      * Sequential and parallel streams
      */
-    public static void streamAPIMethods(){
+    public static void streamAPIMethods() {
         List<Integer> integerList = new ArrayList<>();
-        for(int i = 0; i <= 100; i++) integerList.add(i);
+        for (int i = 0; i <= 100; i++) integerList.add(i);
 
-        integerList.stream().filter(i  -> i > 90).forEach(i -> LOGGER.log(Level.INFO, () -> String.valueOf(i)));
+        integerList.stream().filter(i -> i > 90).forEach(i -> LOGGER.log(Level.INFO, () -> String.valueOf(i)));
         integerList.parallelStream().filter(i -> i > 90).forEach(i -> LOGGER.log(Level.INFO, () -> String.valueOf(i)));
     }
 
     /**
      * Java 8 Date Time API
      */
-    public static void javaDateTimeAPI(){
+    public static void javaDateTimeAPI() {
         LocalDate localDate = LocalDate.now(); // Get Current Date
         LocalTime localTime = LocalTime.now(); // Get Current Time
-        LOGGER.log(Level.INFO, () -> localDate + " "  + localTime);
+        LOGGER.log(Level.INFO, () -> localDate + " " + localTime);
 
         LocalTime localTime1 = LocalTime.now(ZoneId.of("Asia/Kolkata"));
         LOGGER.log(Level.INFO, () -> localTime1 + "");
@@ -97,9 +90,9 @@ public class PracticeJava8 implements OperatingSystem {
     /**
      * Collection API Improvements
      */
-    public static void collectionApiImprovements(){
+    public static void collectionApiImprovements() {
         List<Integer> integerList = new ArrayList<>();
-        for(int i = 0; i <= 5; i++) integerList.add(i);
+        for (int i = 0; i <= 5; i++) integerList.add(i);
 
         Iterator<Integer> iterable = integerList.iterator();
         iterable.forEachRemaining(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
@@ -108,6 +101,24 @@ public class PracticeJava8 implements OperatingSystem {
         LOGGER.log(Level.INFO, () -> String.valueOf(integerList.size()));
     }
 
+    /**
+     * HashTable vs HashMap difference
+     */
+    private static void hashTableVsHashMap() {
+       try {
+           Hashtable<Integer, Integer> hashtable = new Hashtable<>();
+           hashtable.put(1, null); // throws Exception because value is null
+           hashtable.put(null, 1); // throws Exception because key is null
+       } catch (Exception e){
+           LOGGER.log(Level.SEVERE, "Exception occurred", e);
+       }
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        // HashMap accepts null in both key and value
+        hashMap.put(null, 1);
+        hashMap.put(1, null);
+
+        LOGGER.log(Level.INFO, () -> String.valueOf(hashMap));
+    }
 
     /**
      * Main class
@@ -124,5 +135,13 @@ public class PracticeJava8 implements OperatingSystem {
         streamAPIMethods();
         javaDateTimeAPI();
         collectionApiImprovements();
+        hashTableVsHashMap();
+    }
+
+    /**
+     * Default method implementation in interface
+     */
+    public void defaultInterface() {
+        iAmDefault();
     }
 }
