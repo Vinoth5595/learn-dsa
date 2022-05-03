@@ -5,6 +5,18 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+interface PrivateInterface {
+    Logger LOG = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+    private static void privateMethodImplementation(){
+        LOG.log(Level.INFO, "Calling private method inside interface");
+    }
+
+    static void callPrivateInterface(){
+        privateMethodImplementation();
+    }
+}
+
 /**
  * Practice Java 9
  */
@@ -18,5 +30,8 @@ public class PracticeJava9 {
 
     public static void main(String[] args) {
         testUtilityMethods();
+        PrivateInterface.callPrivateInterface();
     }
 }
+
+
