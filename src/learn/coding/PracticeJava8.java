@@ -1,5 +1,6 @@
 package learn.coding;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
@@ -44,6 +45,7 @@ public class PracticeJava8 implements OperatingSystem {
         staticInterface();
         practiceJava8.defaultInterface();
         functionalInterface();
+        streamAPIMethods();
     }
 
     /**
@@ -74,5 +76,16 @@ public class PracticeJava8 implements OperatingSystem {
     public static void functionalInterface(){
         SampleInterface sampleInterface = i -> LOGGER.log(Level.INFO, () -> i);
         sampleInterface.hello("Called by lambda expression");
+    }
+
+    /**
+     * Sequential and parallel streams
+     */
+    public static void streamAPIMethods(){
+        List<Integer> integerList = new ArrayList<>();
+        for(int i = 0; i <= 100; i++) integerList.add(i);
+
+        integerList.stream().filter(i  -> i > 90).forEach(i -> LOGGER.log(Level.INFO, () -> String.valueOf(i)));
+        integerList.parallelStream().filter(i -> i > 90).forEach(i -> LOGGER.log(Level.INFO, () -> String.valueOf(i)));
     }
 }
