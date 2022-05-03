@@ -1,9 +1,7 @@
 package learn.coding;
 
 import java.time.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,21 +32,6 @@ interface OperatingSystem {
 public class PracticeJava8 implements OperatingSystem {
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-    /**
-     * Main class
-     *
-     * @param args command line argument
-     */
-    public static void main(String[] args) {
-        LOGGER.log(Level.INFO, "Hello World");
-        PracticeJava8 practiceJava8 = new PracticeJava8();
-        forEachIterable();
-        staticInterface();
-        practiceJava8.defaultInterface();
-        functionalInterface();
-        streamAPIMethods();
-        javaDateTimeAPI();
-    }
 
     /**
      * forEach() method in Iterable interface
@@ -109,5 +92,37 @@ public class PracticeJava8 implements OperatingSystem {
         Instant timestamp = Instant.now();
         Instant specificTime = Instant.ofEpochMilli(timestamp.toEpochMilli());
         LOGGER.log(Level.INFO, () -> timestamp + " " + specificTime);
+    }
+
+    /**
+     * Collection API Improvements
+     */
+    public static void collectionApiImprovements(){
+        List<Integer> integerList = new ArrayList<>();
+        for(int i = 0; i <= 5; i++) integerList.add(i);
+
+        Iterator<Integer> iterable = integerList.iterator();
+        iterable.forEachRemaining(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
+
+        integerList.removeIf(i -> i > 2);
+        LOGGER.log(Level.INFO, () -> String.valueOf(integerList.size()));
+    }
+
+
+    /**
+     * Main class
+     *
+     * @param args command line argument
+     */
+    public static void main(String[] args) {
+        LOGGER.log(Level.INFO, "Hello World");
+        PracticeJava8 practiceJava8 = new PracticeJava8();
+        forEachIterable();
+        staticInterface();
+        practiceJava8.defaultInterface();
+        functionalInterface();
+        streamAPIMethods();
+        javaDateTimeAPI();
+        collectionApiImprovements();
     }
 }
