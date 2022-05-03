@@ -2,6 +2,7 @@ package learn.coding;
 
 import java.time.*;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -112,12 +113,22 @@ public class PracticeJava8 implements OperatingSystem {
        } catch (Exception e){
            LOGGER.log(Level.SEVERE, "Exception occurred", e);
        }
-        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        Map<Integer, Integer> hashMap = new HashMap<>();
         // HashMap accepts null in both key and value
         hashMap.put(null, 1);
         hashMap.put(1, null);
 
         LOGGER.log(Level.INFO, () -> String.valueOf(hashMap));
+    }
+
+    /**
+     * ThreadLocal Example
+     */
+    public static void testThreadLocal(){
+        ThreadLocal<String> threadLocal =  new ThreadLocal<>();
+        threadLocal.set("Hello");
+        String storedValue = threadLocal.get();
+        LOGGER.log(Level.INFO, () -> storedValue);
     }
 
     /**
@@ -136,6 +147,7 @@ public class PracticeJava8 implements OperatingSystem {
         javaDateTimeAPI();
         collectionApiImprovements();
         hashTableVsHashMap();
+        testThreadLocal();
     }
 
     /**
