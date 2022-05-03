@@ -5,10 +5,18 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Functional Interface
+ */
+
+@FunctionalInterface
 interface SampleInterface {
     void hello(String val);
 }
 
+/**
+ * Operting System interface
+ */
 interface OperatingSystem {
     Logger LOG = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
@@ -60,6 +68,9 @@ public class PracticeJava8 implements OperatingSystem {
         iAmDefault();
     }
 
+    /**
+     * Functional Interface
+     */
     public static void functionalInterface(){
         SampleInterface sampleInterface = i -> LOGGER.log(Level.INFO, () -> i);
         sampleInterface.hello("Called by lambda expression");
