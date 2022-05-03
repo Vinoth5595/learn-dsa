@@ -1,5 +1,6 @@
 package learn.coding;
 
+import java.time.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,6 +47,7 @@ public class PracticeJava8 implements OperatingSystem {
         practiceJava8.defaultInterface();
         functionalInterface();
         streamAPIMethods();
+        javaDateTimeAPI();
     }
 
     /**
@@ -87,5 +89,25 @@ public class PracticeJava8 implements OperatingSystem {
 
         integerList.stream().filter(i  -> i > 90).forEach(i -> LOGGER.log(Level.INFO, () -> String.valueOf(i)));
         integerList.parallelStream().filter(i -> i > 90).forEach(i -> LOGGER.log(Level.INFO, () -> String.valueOf(i)));
+    }
+
+    /**
+     * Java 8 Date Time API
+     */
+    public static void javaDateTimeAPI(){
+        LocalDate localDate = LocalDate.now(); // Get Current Date
+        LocalTime localTime = LocalTime.now(); // Get Current Time
+        LOGGER.log(Level.INFO, () -> localDate + " "  + localTime);
+
+        LocalTime localTime1 = LocalTime.now(ZoneId.of("Asia/Kolkata"));
+        LOGGER.log(Level.INFO, () -> localTime1 + "");
+
+        LocalDateTime localDateTime = LocalDateTime.now();
+        LocalDateTime localDateTimeKolkata = LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
+        LOGGER.log(Level.INFO, () -> localDateTime + " " + localDateTimeKolkata);
+
+        Instant timestamp = Instant.now();
+        Instant specificTime = Instant.ofEpochMilli(timestamp.toEpochMilli());
+        LOGGER.log(Level.INFO, () -> timestamp + " " + specificTime);
     }
 }
