@@ -28,9 +28,15 @@ public class PracticeJava9 {
         Map.of(1, "One", 2, "Two").forEach((k,v) -> LOG.log(Level.INFO,  String.valueOf(v)));
     }
 
+    public static void processApiImprovements(){
+        ProcessHandle currentProcess = ProcessHandle.current();
+        LOG.log(Level.INFO, "{0}", String.valueOf(currentProcess));
+    }
+
     public static void main(String[] args) {
         testUtilityMethods();
         PrivateInterface.callPrivateInterface();
+        processApiImprovements();
     }
 }
 
