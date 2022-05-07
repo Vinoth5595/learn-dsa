@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 interface PrivateInterface {
     Logger LOG = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -99,6 +100,17 @@ public class PracticeJava9 {
         LOG.log(Level.INFO, "{0}", String.valueOf(list));
     }
 
+    public static void streamApiImprovements(){
+        // takeWhile
+        Stream.of(1,2,3,4,5,6,7,8,9,10).takeWhile(i -> i < 5).forEach(System.out::println);
+        // dropWhile
+        Stream.of(1,2,3,4,5,6,7,8,9,10).dropWhile(i -> i < 5).forEach(System.out::println);
+        // iterate
+        Stream.iterate(0, i -> i < 10, i -> i + 1).forEach(System.out::println);
+        // Stream.ofNullable
+        Stream.ofNullable(null).forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
         testUtilityMethods();
         PrivateInterface.callPrivateInterface();
@@ -106,6 +118,7 @@ public class PracticeJava9 {
         resourceManagementJava9();
         diamondOperatorInAnonymousInnerClass();
         optionalApiAdditions();
+        streamApiImprovements();
     }
 }
 
