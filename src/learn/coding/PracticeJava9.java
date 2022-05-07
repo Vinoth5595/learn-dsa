@@ -20,6 +20,15 @@ interface PrivateInterface {
 }
 
 /**
+ * Interface for Add
+ *
+ * @param <T> Type
+ */
+interface Add<T>{
+    T add(Integer a, Integer b);
+}
+
+/**
  * Practice Java 9
  */
 public class PracticeJava9 {
@@ -55,11 +64,23 @@ public class PracticeJava9 {
         }
     }
 
+    public static void diamondOperatorInAnonymousInnerClass(){
+        Add<Integer> addition = new Add<Integer>() {
+            @Override
+            public Integer add(Integer a, Integer b) {
+                return a + b;
+            }
+        };
+
+        LOG.log(Level.INFO,  String.valueOf(addition.add(1,2)));
+    }
+
     public static void main(String[] args) {
         testUtilityMethods();
         PrivateInterface.callPrivateInterface();
         processApiImprovements();
         resourceManagementJava9();
+        diamondOperatorInAnonymousInnerClass();
     }
 }
 
