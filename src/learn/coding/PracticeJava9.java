@@ -100,6 +100,7 @@ public class PracticeJava9 {
         LOG.log(Level.INFO, "{0}", String.valueOf(list));
     }
 
+    @Deprecated(since = "11-12-2021", forRemoval = true)
     public static void streamApiImprovements(){
         // takeWhile
         Stream.of(1,2,3,4,5,6,7,8,9,10).takeWhile(i -> i < 5).forEach(System.out::println);
