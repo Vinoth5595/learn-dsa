@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -65,14 +67,36 @@ public class PracticeJava9 {
     }
 
     public static void diamondOperatorInAnonymousInnerClass(){
-        Add<Integer> addition = new Add<Integer>() {
-            @Override
-            public Integer add(Integer a, Integer b) {
-                return a + b;
-            }
-        };
+        Add<Integer> addition = (a, b) -> a + b;
 
-        LOG.log(Level.INFO,  String.valueOf(addition.add(1,2)));
+        LOG.log(Level.INFO, "{0}", addition.add(1,2));
+    }
+
+    public static void optionalApiAdditions(){
+        Optional<String> optional1 = Optional.of("first");
+        Optional<String> optional2 = Optional.of("second");
+
+
+        // "or" utility method
+        Optional<String> result = optional1.or(() -> optional2);
+        LOG.log(Level.INFO, "{0}", result.orElse(""));
+
+        optional1 = Optional.empty();
+
+        result = optional1.or(() -> optional2);
+
+        LOG.log(Level.INFO, "{0}", result.orElse(""));
+
+        // "ifPresentOrElse" utility method
+        AtomicInteger atomicInteger1 = new AtomicInteger(0);
+        AtomicInteger atomicInteger2 = new AtomicInteger(0);
+        optional2.ifPresentOrElse(t -> atomicInteger2.incrementAndGet(), atomicInteger1::incrementAndGet);
+
+        LOG.log(Level.INFO,  () -> atomicInteger1 + " : " + atomicInteger2);
+
+        // "stream" method in Optional Class
+        List<String> list = optional2.stream().toList();
+        LOG.log(Level.INFO, "{0}", String.valueOf(list));
     }
 
     public static void main(String[] args) {
@@ -81,6 +105,7 @@ public class PracticeJava9 {
         processApiImprovements();
         resourceManagementJava9();
         diamondOperatorInAnonymousInnerClass();
+        optionalApiAdditions();
     }
 }
 
