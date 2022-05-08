@@ -1,5 +1,8 @@
 package learn.coding;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,8 +44,22 @@ public class PracticeJava11 {
         logger.log(Level.INFO, () -> addition.add(1,2)+"");
     }
 
+    public static void nestBasedAccessControl(){
+        logger.log(Level.INFO, PracticeJava11.class.getNestHost().getName());
+        logger.log(Level.INFO, PracticeJava11.Inner.class.getNestHost().getName());
+        logger.log(Level.INFO, () -> PracticeJava11.Inner.class.isNestmateOf(PracticeJava11.class)+"");
+
+        Arrays.stream(PracticeJava11.Inner.class.getNestMembers()).map(Class::getName)
+                .forEach(i -> logger.log(Level.INFO, i));
+    }
+
     public static void main(String[] args) {
         stringOperations();
         localVariableVar();
+        nestBasedAccessControl();
+    }
+
+    class Inner {
+        Inner(){}
     }
 }
