@@ -7,6 +7,11 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.summingDouble;
 
 /**
  * Practice Java 12
@@ -17,21 +22,21 @@ public class PracticeJava12 {
     /**
      * Switch Expression Changes
      */
-    public static void switchChanges(){
+    public static void switchChanges() {
         String day = "M";
-        String strDay = switch(day) {
+        String strDay = switch (day) {
             case "M", "W", "F" -> "MWF";
-            case "T",  "TH","S" -> "TTHS";
+            case "T", "TH", "S" -> "TTHS";
             default -> "Looks like a Sunday";
         };
 
-        logger.log(Level.INFO,  () -> strDay);
+        logger.log(Level.INFO, () -> strDay);
     }
 
     /**
      * Files mismatch method
      */
-    public static void filesMismatch(){
+    public static void filesMismatch() {
         try {
             final String I_AM_VINOTH = "I am Vinoth";
 
@@ -48,8 +53,8 @@ public class PracticeJava12 {
             filePath1.toFile().deleteOnExit();
             filePath2.toFile().deleteOnExit();
 
-            Path filePath3 = Files.createTempFile("file3",  ".txt");
-            Path filePath4 = Files.createTempFile("file4",  ".txt");
+            Path filePath3 = Files.createTempFile("file3", ".txt");
+            Path filePath4 = Files.createTempFile("file4", ".txt");
 
             Files.writeString(filePath3, I_AM_VINOTH);
             Files.writeString(filePath4, "I am Nirmal");
@@ -64,8 +69,8 @@ public class PracticeJava12 {
     /**
      * Compact Number Formatting
      */
-    public static void compactNumberFormatting(){
-        NumberFormat numberFormat = NumberFormat.getCompactNumberInstance(new Locale("en", "US"),  NumberFormat.Style.SHORT);
+    public static void compactNumberFormatting() {
+        NumberFormat numberFormat = NumberFormat.getCompactNumberInstance(new Locale("en", "US"), NumberFormat.Style.SHORT);
         numberFormat.setMaximumFractionDigits(1);
 
         logger.info(() -> numberFormat.format(2346));
@@ -73,6 +78,15 @@ public class PracticeJava12 {
         numberFormat.setMaximumFractionDigits(2);
 
         logger.info(() -> numberFormat.format(2346));
+    }
+
+    public static void collectorsTeeing() {
+        double mean = Stream.of(1, 2, 3, 4, 5)
+                .collect(Collectors.teeing(summingDouble(i -> i),
+                        counting(),
+                        (sum, n) -> sum / n));
+
+        logger.info(() -> mean + "");
     }
 
     /**
@@ -84,5 +98,6 @@ public class PracticeJava12 {
         switchChanges();
         filesMismatch();
         compactNumberFormatting();
+        collectorsTeeing();
     }
 }
