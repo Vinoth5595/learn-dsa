@@ -118,6 +118,12 @@ public class PracticeJava12 {
         // resolveConstantDesc
         String val2 = "test abc";
         logger.info(() -> val2.resolveConstantDesc(MethodHandles.lookup()));
+
+        // Pattern Matching for instanceOf
+        Object abc = "Hello";
+        if(abc instanceof String abcd){
+            logger.info(() -> abcd);
+        }
     }
 
     /**
