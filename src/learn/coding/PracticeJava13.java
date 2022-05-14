@@ -19,7 +19,27 @@ public class PracticeJava13 {
         logger.info(() -> (normalString.equals(textBlock)) + "");
     }
 
+    /**
+     * New Methods in Strings
+     */
+    public static void stringNewMethods(){
+        String data = "data is %s";
+        logger.info(() -> data.formatted("1"));
+
+        String textBlock = """
+                Hi 
+                      This is Vinoth
+                             ***************
+                """;
+
+        logger.info(() -> textBlock.stripIndent());
+
+        String str1 = "Hi\n\tHello' \" /u0022 Vinoth\r";
+        logger.info(() -> str1.translateEscapes());
+    }
+
     public static void main(String[] args) {
         textBlockString();
+        stringNewMethods();
     }
 }
