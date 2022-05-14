@@ -2,7 +2,13 @@ package learn.coding;
 
 import java.util.logging.Logger;
 
-record Author(Integer id, String name){}
+record Author(Integer id, String name){
+    public Author{
+        if(id < 0){
+            throw new IllegalArgumentException("Author id can't be negative");
+        }
+    }
+}
 
 public class PracticeJava14 {
     public static final Logger logger = Logger.getLogger(PracticeJava14.class.getName());
