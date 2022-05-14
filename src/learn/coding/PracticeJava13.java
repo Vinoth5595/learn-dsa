@@ -38,8 +38,27 @@ public class PracticeJava13 {
         logger.info(() -> str1.translateEscapes());
     }
 
+    /**
+     * Enhancement in Switch Expression
+     */
+    public static void switchEnhancements(){
+        int choice = 2;
+
+        // multi-label case statements
+        // yield to returns
+        int x = switch (choice) {
+            case 1,2,3:
+                yield choice;
+            default:
+                yield -1;
+        };
+
+        logger.info(() -> x + "");
+    }
+
     public static void main(String[] args) {
         textBlockString();
         stringNewMethods();
+        switchEnhancements();
     }
 }
