@@ -4,6 +4,9 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.logging.Logger;
 
 interface HelloWorld{
@@ -50,11 +53,21 @@ public class PracticeJava16 {
     }
 
     /**
+     * Day period support
+     */
+    public static void dayPeriodSupport(){
+        LocalTime localTime = LocalTime.parse("22:25:08.690791");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("h B");
+        logger.info(() -> localTime.format(dateTimeFormatter));
+    }
+
+    /**
      * Main Method
      *
      * @param args command line arguments
      */
     public static void main(String[] args) {
         invokeDefaultMethodFromProxyInstance();
+        dayPeriodSupport();
     }
 }
