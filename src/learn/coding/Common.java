@@ -9,9 +9,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 class Player implements Comparable<Player> {
-	private String name;
-	private Integer age;
-	private Integer rank;
+	private final String name;
+	private final Integer age;
+	private final Integer rank;
 
 	public Player(String name, Integer age, Integer rank) {
 		super();
@@ -24,25 +24,19 @@ class Player implements Comparable<Player> {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
+
 
 	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
-	}
+
 
 	public Integer getRank() {
 		return rank;
 	}
 
-	public void setRank(Integer rank) {
-		this.rank = rank;
-	}
+
 
 	@Override
 	public String toString() {
@@ -56,7 +50,7 @@ class Player implements Comparable<Player> {
 }
 
 /**
- * Age Comparator
+ * Age Comparator - Testing
  */
 class AgeComparator implements Comparator<Player> {
 
