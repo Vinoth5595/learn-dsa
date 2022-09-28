@@ -55,6 +55,9 @@ class Player implements Comparable<Player> {
 	}
 }
 
+/**
+ * Age Comparator
+ */
 class AgeComparator implements Comparator<Player> {
 
 	@Override
