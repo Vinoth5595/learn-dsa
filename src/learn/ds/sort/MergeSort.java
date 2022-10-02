@@ -4,12 +4,8 @@ import java.util.Arrays;
 
 public class MergeSort {
     public static void main(String[] args) {
-        System.out.println("HI");
-
         int[] arr = {5, 4, -1, -5, 9, 100, 34};
-
         mergeSort(arr, 0, arr.length);
-
         System.out.println(Arrays.toString(arr));
     }
 
