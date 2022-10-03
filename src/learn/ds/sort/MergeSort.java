@@ -3,6 +3,7 @@ package learn.ds.sort;
 import java.util.Arrays;
 
 public class MergeSort {
+
     public static void main(String[] args) {
         int[] arr = {5, 4, -1, -5, 9, 100, 34};
         mergeSort(arr, 0, arr.length);
